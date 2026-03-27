@@ -1,1 +1,2 @@
 # Productify
+## project notes
