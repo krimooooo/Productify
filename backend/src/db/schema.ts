@@ -12,7 +12,7 @@ export const users = pgTable("users",
     // key is the name of the table and value is the schema of the table
     imageUrl:text("image_url"),
     createdAt:timestamp("created_at").notNull().defaultNow(),
-    updateAt:timestamp("updated_at").notNull().defaultNow(),
+    updateAt:timestamp("updated_at",{mode:"date"}).notNull().defaultNow().$onUpdate(() => new Date()),
     // the date and time when the user was created and updated
    })
 
@@ -26,7 +26,7 @@ export const products=pgTable("products",{
     .references(()=>users.id,{onDelete:"cascade"}),
     // caascade means that if the user is deleted then all the products of that user will be deleted
     createdAt:timestamp("created_at").notNull().defaultNow(),
-    updateAt:timestamp("updated_at").notNull().defaultNow()
+    updateAt:timestamp("updated_at",{mode:"date"}).notNull().defaultNow().$onUpdate(() => new Date())
 });
 
 //this is the table of the commandsin the database
@@ -43,7 +43,7 @@ export const comments=pgTable("comments",{
     .references(()=>products.id,{onDelete:"cascade"}),
     // caascade means that if the user is deleted then all the products of that user will be deleted
     createdAt:timestamp("created_at").notNull().defaultNow(),
-    updateAt:timestamp("updated_at").notNull().defaultNow()
+    updateAt:timestamp("updated_at",{mode:"date"}).notNull().defaultNow().$onUpdate(() => new Date())
 });
 
 
