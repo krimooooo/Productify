@@ -48,6 +48,7 @@ export const comments=pgTable("comments",{
 
 
 // realation defines the relation between the tables
+
 export const usersRelations=relations(users,({many}) =>({
     products:many(products),
     comments:many(comments)
@@ -56,6 +57,7 @@ export const usersRelations=relations(users,({many}) =>({
 export const productsRelations=relations(products,({many,one}) =>({
     comments:many(comments),
     user:one(users,{fields:[products.userId],references:[users.id]}),
+    // this is for the relation between the product and the user
 }));
 
 export const commentsRelations=relations(comments,({one}) =>({

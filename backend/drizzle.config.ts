@@ -1,13 +1,11 @@
-// import {defineConfig} from "drizzle-kit";
-// import { ENV } from "./src/config/env";
+import dotenv from "dotenv";
 
-
-import { ENV } from "./src/config/env";
+dotenv.config();
 
 export default {
   dialect: "postgresql",
-  schema: ["/home/kariiim/Desktop/productifity/backend/src/db/schema.ts"],
+  schema: ["./src/db/schema.ts"],
   dbCredentials: {
-    url: ENV.DATABASE_URL!,
+    url: process.env.DATABASE_URL,
   },
 };
